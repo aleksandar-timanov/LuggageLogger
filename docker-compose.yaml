@@ -7,6 +7,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: system
     volumes:
-      - ./data:/var/lib/mysql
+      - ./Backend/data:/var/lib/mysql
     ports:
       - 3306:3306
