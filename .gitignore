@@ -1,4 +1,3 @@
-# Compiled class file
 *.class
 
 # Log file
@@ -25,4 +24,4 @@ replay_pid*
 
 # Specific to this project
 data
-Frontend/node_modules
+Frontend/node_modules*
