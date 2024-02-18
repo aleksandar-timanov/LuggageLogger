@@ -24,4 +24,4 @@ replay_pid*
 
 # Specific to this project
 data
-Frontend/node_modules*
+*node_modules*
