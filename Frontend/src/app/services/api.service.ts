@@ -15,6 +15,7 @@ export class ApiService {
   }
 
   public createUser(userData: User): Observable<Object> {
+    console.log(userData)
     return this.http.post<User>('http://localhost:8080/users', userData);
   }
 

@@ -22,18 +22,18 @@ export class UserComponent implements OnInit {
   onSubmit() {
     if (this.userForm.valid) {
       this.user = {
-        id: null,
         name: this.userForm.value.name!,
         email: this.userForm.value.email!
       };
 
-      this.apiService.createUser(this.user).subscribe(res => console.log(res));
+      this.apiService.createUser(this.user)
+        .subscribe(res => console.log(res));
     }
   }
 
   ngOnInit(): void {
     this.apiService.getAllUsers().subscribe(users => {
-      console.log(users._embedded.users);
+      console.log(users);
     })
 
   }
