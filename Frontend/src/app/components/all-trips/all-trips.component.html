@@ -1,0 +1,9 @@
+<h1>Trips</h1>
+<div class="container columns-3 columns-1sm">
+    @for (trip of temporaryData; track trip){
+      <div 
+        class="card w-full">
+          {{trip.destination}}
+      </div>
+    }
+</div>
