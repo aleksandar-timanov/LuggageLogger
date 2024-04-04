@@ -1,9 +1,22 @@
-<h1>Trips</h1>
-<div class="container columns-3 columns-1sm">
-    @for (trip of temporaryData; track trip){
-      <div 
-        class="card w-full">
-          {{trip.destination}}
-      </div>
+<div class="container w-full">
+    <h1>Trips</h1>
+</div>
+<div class="grid grid-cols-3 gap-4">
+    @for (trip of temporaryData; track trip) {
+        <div
+            class="w-50 h-32 w-full gap-x-2 rounded-md border border-solid border-cyan-500 bg-cyan-500 p-3 text-white"
+        >
+            <div class="flex w-full justify-start text-2xl font-extrabold">
+                {{ trip.destination }}
+            </div>
+            <div
+                class="text-l flex h-full w-full items-center justify-end font-bold"
+            >
+                <div>
+                    {{ trip.departureDate | date }} -
+                    {{ trip.returnDate | date }}
+                </div>
+            </div>
+        </div>
     }
 </div>
