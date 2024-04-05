@@ -1,11 +1,21 @@
-<div class="container w-full">
-    <h1>Trips</h1>
+<!-- Title tray -->
+<div class="container w-full py-16">
+    <div class="text-5xl font-extrabold text-white">Trips</div>
 </div>
-<div class="grid grid-cols-3 gap-4">
-    @for (trip of temporaryData; track trip) {
+<!-- Cards grid -->
+<div class="grid grid-cols-3 gap-6">
+    @for (trip of temporaryData; track trip.id) {
+        <!-- Separate cards -->
         <div
-            class="w-50 h-32 w-full gap-x-2 rounded-md border border-solid border-cyan-500 bg-cyan-500 p-3 text-white"
+            class="w-50 relative z-10 h-32 w-full cursor-pointer gap-x-2 rounded-md border border-solid border-white bg-cyan-700 p-3 text-white transition duration-200 hover:bg-cyan-600"
+            (click)="onChooseTrip(trip.id)"
         >
+            <div
+                class="absolute right-3 z-20 grid content-center justify-center rounded-md bg-cyan-600 p-1 transition duration-200 hover:bg-orange-700"
+                (click)="onDeleteClick($event, trip.id)"
+            >
+                <i-feather name="trash-2"></i-feather>
+            </div>
             <div class="flex w-full justify-start text-2xl font-extrabold">
                 {{ trip.destination }}
             </div>
@@ -19,4 +29,19 @@
             </div>
         </div>
     }
+    <!-- New trip card -->
+    <div
+        class="w-50 grid h-32 w-full cursor-pointer content-center justify-center gap-x-2 rounded-md border border-solid border-white bg-cyan-700 p-3 text-white transition duration-200 hover:bg-cyan-600"
+    >
+        <i-feather name="plus-circle"></i-feather>
+    </div>
 </div>
+
+<!-- modal for deleting an item -->
+@if (deleteModalOpenedFor || deleteModalOpenedFor === 0) {
+    <div
+        class="max-h-3/5 absolute left-1/2 top-1/2 z-50 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 bg-white"
+    >
+        Are you sure you want to delete trip {{ deleteModalOpenedFor }}
+    </div>
+}
