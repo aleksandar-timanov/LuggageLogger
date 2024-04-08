@@ -59,4 +59,23 @@ export class AllTripsComponent {
         console.log(`delete clicked for ${tripId}`)
         this.deleteModalOpenedFor = tripId
     }
+
+    public onModalCloseClick(): void {
+        this.deleteModalOpenedFor = null
+    }
+
+    public onCancelDownloadClick() {
+        this.deleteModalOpenedFor = null
+    }
+
+    public onConfirmDeleteClick(tripToDeleteId: number) {
+        this.temporaryData.splice(
+            this.temporaryData
+                .map((trip: any) => trip.id)
+                .indexOf(tripToDeleteId),
+            1
+        )
+
+        this.deleteModalOpenedFor = null
+    }
 }

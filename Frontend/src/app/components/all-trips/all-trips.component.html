@@ -40,14 +40,34 @@
 <!-- modal for deleting an item -->
 @if (deleteModalOpenedFor || deleteModalOpenedFor === 0) {
     <div
-        class="max-h-3/5 absolute left-1/2 top-1/2 z-50 h-3/5 w-3/5 -translate-x-1/2 -translate-y-1/2 rounded-md bg-blue-900 text-white ring-2 ring-offset-2"
+        class="max-h-3/5 absolute left-1/2 top-1/2 z-50 grid h-fit w-3/5 -translate-x-1/2 -translate-y-1/2 flex-row rounded-md bg-blue-900 p-10 text-white ring-2 ring-offset-2"
     >
-        <div class="absolute right-3 top-3">
+        <div
+            class="absolute right-3 top-3 grid cursor-pointer rounded-full hover:bg-orange-700"
+            (click)="onModalCloseClick()"
+        >
             <i-feather name="x-circle"></i-feather>
         </div>
         <!-- Content of modal -->
-        <div class="align-center font-xl flex h-full w-full justify-center">
-            Are you sure you want to delete trip {{ deleteModalOpenedFor }}
+        <div class="grid w-full place-items-center pb-10 text-2xl">
+            <span
+                >Are you sure you want to delete trip
+                {{ deleteModalOpenedFor }}
+            </span>
+        </div>
+        <div class="flex flex-row items-center justify-around">
+            <button
+                class="h-fit w-fit rounded-md bg-cyan-700 p-4 text-center"
+                (click)="onConfirmDeleteClick(deleteModalOpenedFor)"
+            >
+                Delete
+            </button>
+            <button
+                class="h-fit w-fit rounded-md bg-cyan-700 p-4 text-center"
+                (click)="onCancelDownloadClick()"
+            >
+                Cancel
+            </button>
         </div>
     </div>
 }
