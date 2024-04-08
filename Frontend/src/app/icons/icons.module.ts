@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core'
 
 import { FeatherModule } from 'angular-feather'
-import { PlusCircle, Trash2 } from 'angular-feather/icons'
+import { PlusCircle, Trash2, XCircle } from 'angular-feather/icons'
 
 // Select some icons (use an object, not an array)
 const icons = {
     PlusCircle,
     Trash2,
+    XCircle,
 }
 
 @NgModule({
