@@ -1,16 +1,19 @@
 import { CommonModule } from '@angular/common'
 import { Component } from '@angular/core'
 import { IconsModule } from '../../icons/icons.module'
+import { ModalComponent } from '../modal/modal.component'
+import { CreateTripComponent } from '../create-trip/create-trip.component'
 
 @Component({
     selector: 'app-all-trips',
     standalone: true,
-    imports: [CommonModule, IconsModule],
+    imports: [CommonModule, IconsModule, ModalComponent, CreateTripComponent],
     templateUrl: './all-trips.component.html',
     styleUrl: './all-trips.component.scss',
 })
 export class AllTripsComponent {
     public deleteModalOpenedFor: number | null = null
+    public isCreateModalOpen = false
     temporaryData: any = [
         {
             id: 0,
@@ -77,5 +80,9 @@ export class AllTripsComponent {
         )
 
         this.deleteModalOpenedFor = null
+    }
+
+    public onCreateCardClick() {
+        this.isCreateModalOpen = true
     }
 }

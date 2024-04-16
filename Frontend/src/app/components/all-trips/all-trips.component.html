@@ -3,7 +3,7 @@
     <div class="text-5xl font-extrabold text-white">Trips</div>
 </div>
 <!-- Cards grid -->
-<div class="grid grid-cols-3 gap-6">
+<div class="mx-5 grid gap-6 sm:m-0 md:grid-cols-3">
     @for (trip of temporaryData; track trip.id) {
         <!-- Separate cards -->
         <div
@@ -32,6 +32,7 @@
     <!-- New trip card -->
     <div
         class="w-50 grid h-32 w-full cursor-pointer content-center justify-center gap-x-2 rounded-md border border-solid border-white bg-cyan-700 p-3 text-white transition duration-200 hover:bg-cyan-600"
+        (click)="onCreateCardClick()"
     >
         <i-feather name="plus-circle"></i-feather>
     </div>
@@ -39,9 +40,7 @@
 
 <!-- modal for deleting an item -->
 @if (deleteModalOpenedFor || deleteModalOpenedFor === 0) {
-    <div
-        class="max-h-3/5 absolute left-1/2 top-1/2 z-50 grid h-fit w-3/5 -translate-x-1/2 -translate-y-1/2 flex-row rounded-md bg-blue-900 p-10 text-white ring-2 ring-offset-2"
-    >
+    <app-modal>
         <div
             class="absolute right-3 top-3 grid cursor-pointer rounded-full hover:bg-orange-700"
             (click)="onModalCloseClick()"
@@ -52,7 +51,7 @@
         <div class="grid w-full place-items-center pb-10 text-2xl">
             <span
                 >Are you sure you want to delete trip
-                {{ deleteModalOpenedFor }}
+                {{ deleteModalOpenedFor }}?
             </span>
         </div>
         <div class="flex flex-row items-center justify-around">
@@ -69,5 +68,11 @@
                 Cancel
             </button>
         </div>
-    </div>
+    </app-modal>
+}
+
+@if (isCreateModalOpen) {
+    <app-modal>
+        <app-create-trip></app-create-trip>
+    </app-modal>
 }
