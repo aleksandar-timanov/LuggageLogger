@@ -40,13 +40,7 @@
 
 <!-- modal for deleting an item -->
 @if (deleteModalOpenedFor || deleteModalOpenedFor === 0) {
-    <app-modal>
-        <div
-            class="absolute right-3 top-3 grid cursor-pointer rounded-full hover:bg-orange-700"
-            (click)="onModalCloseClick()"
-        >
-            <i-feather name="x-circle"></i-feather>
-        </div>
+    <app-modal (closeModal)="onCancelDeleteClick()">
         <!-- Content of modal -->
         <div class="grid w-full place-items-center pb-10 text-2xl">
             <span
@@ -63,7 +57,7 @@
             </button>
             <button
                 class="h-fit w-fit rounded-md bg-cyan-700 p-4 text-center"
-                (click)="onCancelDownloadClick()"
+                (click)="onCancelDeleteClick()"
             >
                 Cancel
             </button>
@@ -72,7 +66,9 @@
 }
 
 @if (isCreateModalOpen) {
-    <app-modal>
-        <app-create-trip></app-create-trip>
+    <app-modal (closeModal)="onCancelCreateClick()">
+        <app-create-trip
+            (tripSubmitted)="onNewTripSubmitted($event)"
+        ></app-create-trip>
     </app-modal>
 }

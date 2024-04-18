@@ -2,7 +2,13 @@
     class="absolute left-0 top-0 z-40 h-screen w-screen bg-black opacity-50"
 ></div>
 <div
-    class="absolute left-1/2 top-1/2 z-50 grid h-fit max-h-80 w-fit min-w-80 -translate-x-1/2 -translate-y-1/2 flex-row rounded-md bg-blue-900 p-10 text-white ring-2 ring-offset-2"
+    class="absolute left-1/2 top-1/2 z-50 grid h-fit max-h-screen w-fit min-w-[75%] max-w-md -translate-x-1/2 -translate-y-1/2 flex-row rounded-md bg-blue-900 p-10 text-white ring-2 ring-offset-2"
 >
+    <div
+        class="absolute right-3 top-3 grid cursor-pointer rounded-full hover:bg-orange-700"
+        (click)="onModalCloseClick()"
+    >
+        <i-feather name="x-circle"></i-feather>
+    </div>
     <ng-content></ng-content>
 </div>

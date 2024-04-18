@@ -13,7 +13,7 @@ import { CreateTripComponent } from '../create-trip/create-trip.component'
 })
 export class AllTripsComponent {
     public deleteModalOpenedFor: number | null = null
-    public isCreateModalOpen = false
+    public isCreateModalOpen = true
     temporaryData: any = [
         {
             id: 0,
@@ -63,12 +63,12 @@ export class AllTripsComponent {
         this.deleteModalOpenedFor = tripId
     }
 
-    public onModalCloseClick(): void {
+    public onCancelDeleteClick() {
         this.deleteModalOpenedFor = null
     }
 
-    public onCancelDownloadClick() {
-        this.deleteModalOpenedFor = null
+    public onCancelCreateClick() {
+        this.isCreateModalOpen = false
     }
 
     public onConfirmDeleteClick(tripToDeleteId: number) {
@@ -84,5 +84,11 @@ export class AllTripsComponent {
 
     public onCreateCardClick() {
         this.isCreateModalOpen = true
+    }
+
+    public onNewTripSubmitted(trip: any) {
+        console.log(trip)
+        this.temporaryData.push({ id: this.temporaryData.length, ...trip })
+        this.isCreateModalOpen = false
     }
 }

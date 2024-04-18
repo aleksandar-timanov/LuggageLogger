@@ -1,1 +1,53 @@
-<p>create-trip works!</p>
+<div class="h-full w-full">
+    <form
+        class="m-auto w-2/3"
+        [formGroup]="newTrip"
+        (ngSubmit)="onSubmitNewTrip()"
+    >
+        <div class="mb-3 grid w-full">
+            <label for="destination" class="mb-1 w-full text-xl"
+                >Destination</label
+            >
+            <input
+                class="rounded-md p-2 text-black"
+                type="text"
+                formControlName="destination"
+                name="destination"
+                value=""
+                placeholder="Where are we going next?"
+                #destination
+            />
+        </div>
+        <div class="mb-3 grid w-full">
+            <label class="mb-1 w-full text-xl" for="departureDate"
+                >Date of departure</label
+            >
+            <input
+                type="date"
+                name="departureDate"
+                formControlName="departureDate"
+                value=""
+                class="rounded-md p-2 text-black"
+            />
+        </div>
+        <div class="mb-3 grid w-full">
+            <label class="mb-1 w-full text-xl" for="returnDate"
+                >Date of return</label
+            >
+            <input
+                type="date"
+                name="returnDate"
+                formControlName="returnDate"
+                value=""
+                class="rounded-md p-2 text-black"
+            />
+        </div>
+
+        <button
+            class="h-fit w-fit rounded-md bg-cyan-700 p-4 text-center"
+            type="submit"
+        >
+            Submit new trip
+        </button>
+    </form>
+</div>
