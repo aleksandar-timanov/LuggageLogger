@@ -1,8 +1,8 @@
-package com.example.accessingdatamysql;
+package com.LuggageLogger;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.example.accessingdatamysql.User;
+import com.LuggageLogger.User;
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 // CRUD refers Create, Read, Update, Delete

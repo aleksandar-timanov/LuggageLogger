@@ -1,4 +1,4 @@
-package com.example.accessingdatamysql;
+package com.LuggageLogger;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

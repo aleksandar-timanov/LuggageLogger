@@ -13,7 +13,7 @@ import { CreateTripComponent } from '../create-trip/create-trip.component'
 })
 export class AllTripsComponent {
     public deleteModalOpenedFor: number | null = null
-    public isCreateModalOpen = true
+    public isCreateModalOpen = false
     temporaryData: any = [
         {
             id: 0,

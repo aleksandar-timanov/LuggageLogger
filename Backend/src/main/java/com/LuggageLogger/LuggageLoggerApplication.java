@@ -1,14 +1,14 @@
-package com.example.accessingdatamysql;
+package com.LuggageLogger;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AccessingDataMysqlApplication {
+public class LuggageLoggerApplication {
 
   public static void main(String[] args) {
     try{
-        SpringApplication.run(AccessingDataMysqlApplication.class, args);  
+        SpringApplication.run(LuggageLoggerApplication.class, args);  
     } catch (Exception e) {
         e.printStackTrace();
     }
