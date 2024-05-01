@@ -1,4 +1,4 @@
-package com.LuggageLogger;
+package com.LuggageLogger.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
