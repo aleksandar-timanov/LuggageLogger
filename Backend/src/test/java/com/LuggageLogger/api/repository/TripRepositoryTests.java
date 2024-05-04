@@ -19,7 +19,7 @@ public class TripRepositoryTests {
     private TripRepository tripRepository;
 
     @Test
-    public void TripRepository_SaveAll_ReturnsSavedTrips() {
+    public void TripRepository_SaveTrip_ReturnsSavedTrip() {
         //Arrange
         Instant departureDate = Instant.now();
         Instant returnDate = Instant.now();
@@ -38,5 +38,26 @@ public class TripRepositoryTests {
         Assertions.assertTrue(savedTrip.getId() > 0);
 
     }
-  
+
+
+    @Test
+    public void TripRepository_SaveFromStringDates_ReturnsSavedTrip() {
+        //Arrange
+        Instant departureDate = Instant.parse(Instant.now().toString());
+        Instant returnDate = Instant.parse(Instant.now().toString());
+
+        Trip trip = Trip.builder()
+                .destination("Sofia")
+                .departureDate(departureDate)
+                .returnDate(returnDate)
+                .build();
+
+        //Act
+        Trip savedTrip = tripRepository.save(trip);
+
+        //Assert
+        Assertions.assertNotNull(savedTrip);
+        Assertions.assertTrue(savedTrip.getId() > 0);
+
+    }
 }

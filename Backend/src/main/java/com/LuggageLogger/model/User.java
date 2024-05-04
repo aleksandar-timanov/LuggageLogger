@@ -1,48 +1,59 @@
-package com.LuggageLogger;
+package com.LuggageLogger.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class User {
+@Data
+@Builder
+@AllArgsConstructor
+@Table(name="_user")
+public class User implements UserDetails {
+
+
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  private String name;
+  private String username;
 
   private String email;
 
-  User() {}
+  private String password;
 
-  User(String name, String email) {
-    this.name = name;
-    this.email = email;
+  @Enumerated(EnumType.STRING)
+  private Role role;
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return List.of(new SimpleGrantedAuthority(role.name()));
   }
 
-  public Integer getId() {
-    return id;
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
   }
 
-  public String getName() {
-    return name;
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
+  @Override
+  public boolean isEnabled() {
+    return true;
   }
 }
