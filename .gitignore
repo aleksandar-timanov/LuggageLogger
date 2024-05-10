@@ -30,3 +30,4 @@ data
 **/.angular
 
 **/.gradle/**
+/Backend/build/
