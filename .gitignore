@@ -28,3 +28,5 @@ data
 */package-lock.json
 **/.idea
 **/.angular
+
+**/.gradle/**
