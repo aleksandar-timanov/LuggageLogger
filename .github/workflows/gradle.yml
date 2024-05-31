@@ -86,5 +86,5 @@ jobs:
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
     - name: Generate and submit dependency graph
       with:
-        path: Backend
+        build-root-directory: Backend
       uses: gradle/actions/dependency-submission@v3
