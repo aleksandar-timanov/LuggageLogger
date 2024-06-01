@@ -1,23 +1,29 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { User } from '../models/user.model';
+import { HttpClient } from '@angular/common/http'
+import { Injectable, isDevMode } from '@angular/core'
+import { Observable } from 'rxjs'
+import { User } from '../models/user.model'
+import { environment } from '../../environments/environment'
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class ApiService {
+    private url =
+        isDevMode() && environment.apiUrl !== ''
+            ? environment.apiUrl
+            : 'http://localhost:8080' //TODO: change this to the actual backend URL
+    constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+    public getAllUsers(): Observable<any> {
+        return this.http.get(`${this.url}/users`)
+    }
 
-  public getAllUsers(): Observable<any> {
-    return this.http.get('http://localhost:8080/users');
-  }
+    public createUser(userData: User): Observable<Object> {
+        console.log(userData)
+        return this.http.post<User>(`${this.url}/users`, userData)
+    }
 
-  public createUser(userData: User): Observable<Object> {
-    console.log(userData)
-    return this.http.post<User>('http://localhost:8080/users', userData);
-  }
-
-
+    public getAllTrips(): Observable<any> {
+        return this.http.get(`${this.url}/trips`)
+    }
 }

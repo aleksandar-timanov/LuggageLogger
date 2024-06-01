@@ -3,6 +3,8 @@ import { Component } from '@angular/core'
 import { IconsModule } from '../../icons/icons.module'
 import { ModalComponent } from '../modal/modal.component'
 import { CreateTripComponent } from '../create-trip/create-trip.component'
+import { ApiService } from '../../services/api.service'
+import { Trip } from '../../models/trip.model'
 
 @Component({
     selector: 'app-all-trips',
@@ -14,44 +16,15 @@ import { CreateTripComponent } from '../create-trip/create-trip.component'
 export class AllTripsComponent {
     public deleteModalOpenedFor: number | null = null
     public isCreateModalOpen = false
-    temporaryData: any = [
-        {
-            id: 0,
-            destination: 'Sofia',
-            departureDate: new Date(2024, 7, 15),
-            returnDate: new Date(2024, 7, 15),
-        },
-        {
-            id: 1,
-            destination: 'Sofia',
-            departureDate: new Date(2024, 7, 15),
-            returnDate: new Date(2024, 7, 15),
-        },
-        {
-            id: 2,
-            destination: 'Sofia',
-            departureDate: new Date(2024, 7, 15),
-            returnDate: new Date(2024, 7, 15),
-        },
-        {
-            id: 3,
-            destination: 'Sofia',
-            departureDate: new Date(2024, 7, 15),
-            returnDate: new Date(2024, 7, 15),
-        },
-        {
-            id: 6,
-            destination: 'Sofia',
-            departureDate: new Date(2024, 7, 15),
-            returnDate: new Date(2024, 7, 15),
-        },
-        {
-            id: 7,
-            destination: 'Sofia',
-            departureDate: new Date(2024, 7, 15),
-            returnDate: new Date(2024, 7, 15),
-        },
-    ]
+    temporaryData: any = []
+
+    public constructor(private apiService: ApiService) {}
+
+    ngOnInit() {
+        this.apiService.getAllTrips().subscribe((data: Trip[]) => {
+            this.temporaryData = data
+        })
+    }
 
     public onChooseTrip(tripId: number): void {
         console.log(tripId)

@@ -1,0 +1,9 @@
+{
+  "routes": [
+    "/all-trips",
+    "/create-trip",
+    "/edit-trip",
+    "/trip-details",
+    "/user"
+  ]
+}
