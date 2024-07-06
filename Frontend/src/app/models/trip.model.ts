@@ -3,4 +3,12 @@ export interface Trip {
     destination: string
     departureDate: Date
     returnDate: Date
+    luggageItems: Item[]
+}
+
+interface Item {
+    id: number
+    name: string
+    price: number
+    isTaken: boolean
 }

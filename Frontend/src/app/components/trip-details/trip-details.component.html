@@ -1,9 +1,28 @@
-<div class="container w-full py-16">
+<div class="container h-full w-full overflow-y-hidden py-16">
     <div class="text-5xl font-extrabold text-white">
         Trip to {{ trip?.destination! }}
     </div>
     <div class="text-3xl font-extrabold text-white">
         between {{ trip?.departureDate | date }} and
         {{ trip?.returnDate | date }}
+    </div>
+
+    <div class="mt-5 h-4/5 overflow-y-scroll rounded-md border-2 border-white">
+        @for (item of trip?.luggageItems!; track item.id) {
+            <div class="justify-spaced items-left flex flex-row p-2 py-2">
+                <input
+                    type="checkbox"
+                    name="isTaken"
+                    class="vertical-align-middle h-6 w-6 cursor-pointer appearance-none rounded-full border-2 border-white bg-white checked:bg-cyan-700"
+                    [checked]="item.isTaken"
+                />
+                <label
+                    class="pl-2 text-2xl font-bold text-white"
+                    [class.line-through]="item.isTaken"
+                    name="isTaken"
+                    >{{ item.name }}</label
+                >
+            </div>
+        }
     </div>
 </div>
