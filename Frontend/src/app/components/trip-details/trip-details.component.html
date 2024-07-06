@@ -1,1 +1,9 @@
-<p>trip-details works!</p>
+<div class="container w-full py-16">
+    <div class="text-5xl font-extrabold text-white">
+        Trip to {{ trip?.destination! }}
+    </div>
+    <div class="text-3xl font-extrabold text-white">
+        between {{ trip?.departureDate | date }} and
+        {{ trip?.returnDate | date }}
+    </div>
+</div>

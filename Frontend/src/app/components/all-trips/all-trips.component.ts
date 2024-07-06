@@ -5,6 +5,7 @@ import { ModalComponent } from '../modal/modal.component'
 import { CreateTripComponent } from '../create-trip/create-trip.component'
 import { ApiService } from '../../services/api.service'
 import { Trip } from '../../models/trip.model'
+import { Router } from '@angular/router'
 
 @Component({
     selector: 'app-all-trips',
@@ -18,7 +19,10 @@ export class AllTripsComponent {
     public isCreateModalOpen = false
     temporaryData: any = []
 
-    public constructor(private apiService: ApiService) {}
+    public constructor(
+        private apiService: ApiService,
+        private router: Router
+    ) {}
 
     ngOnInit() {
         this.apiService.getAllTrips().subscribe((data: Trip[]) => {
@@ -28,6 +32,7 @@ export class AllTripsComponent {
 
     public onChooseTrip(tripId: number): void {
         console.log(tripId)
+        this.router.navigate(['/trips', tripId])
     }
 
     public onDeleteClick(event: Event, tripId: number): void {

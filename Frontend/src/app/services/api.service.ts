@@ -26,4 +26,8 @@ export class ApiService {
     public getAllTrips(): Observable<any> {
         return this.http.get(`${this.url}/trips`)
     }
+
+    public getTrip(tripId: number): Observable<any> {
+        return this.http.get(`${this.url}/trips/${tripId}`)
+    }
 }
