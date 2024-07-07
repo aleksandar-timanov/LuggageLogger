@@ -11,4 +11,6 @@ interface Item {
     name: string
     price: number
     isTaken: boolean
+    quantity: number
+    category: string
 }

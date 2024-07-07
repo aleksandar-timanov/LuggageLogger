@@ -13,6 +13,14 @@ module.exports = () => {
                 quantity: faker.number.int({ min: 1, max: 5 }),
                 id: j,
                 isTaken: faker.datatype.boolean(),
+                category: faker.datatype.boolean()
+                    ? faker.helpers.arrayElement([
+                          'clothing',
+                          'electronics',
+                          'toiletries',
+                          'other',
+                      ])
+                    : null,
             })
         }
         trips.push({

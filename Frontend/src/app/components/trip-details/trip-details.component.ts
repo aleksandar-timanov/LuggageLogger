@@ -15,6 +15,7 @@ import { ReactiveFormsModule, FormGroup } from '@angular/forms'
 export class TripDetailsComponent {
     public trip: Trip | undefined
     tripForm: FormGroup | undefined
+    public math = Math
 
     constructor(
         private route: ActivatedRoute,
@@ -25,5 +26,13 @@ export class TripDetailsComponent {
         this.apiService.getTrip(tripId).subscribe((trip: Trip) => {
             this.trip = trip
         })
+    }
+
+    public takenItemsPercentage() {
+        const takenItems = this.trip?.luggageItems.filter(
+            (item) => item.isTaken
+        )
+
+        return (takenItems!.length / this.trip!.luggageItems.length) * 100
     }
 }
