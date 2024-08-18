@@ -1,13 +1,11 @@
 package com.LuggageLogger.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Entity // This tells Hibernate to make a table out of this class
 @Data
@@ -24,6 +22,9 @@ public class Trip {
   private Instant departureDate;
   @Getter @Setter
   private Instant returnDate;
+
+  @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<LuggageItem> luggageItems;
 
   Trip(String destination, String departureDate, String returnDate) {
     DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;

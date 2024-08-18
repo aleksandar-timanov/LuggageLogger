@@ -41184,7 +41184,7 @@ var ReactiveFormsModule = _ReactiveFormsModule;
 // src/environments/environment.ts
 var environment = {
   production: false,
-  apiUrl: "http://localhost:3000"
+  apiUrl: "http://localhost:8080"
 };
 
 // src/app/services/api.service.ts
@@ -41202,6 +41202,9 @@ var _ApiService = class _ApiService {
   }
   getAllTrips() {
     return this.http.get(`${this.url}/trips`);
+  }
+  getTrip(tripId) {
+    return this.http.get(`${this.url}/trips/${tripId}`);
   }
 };
 _ApiService.\u0275fac = function ApiService_Factory(t) {
@@ -41625,8 +41628,9 @@ function AllTripsComponent_Conditional_9_Template(rf, ctx) {
   }
 }
 var _AllTripsComponent = class _AllTripsComponent {
-  constructor(apiService) {
+  constructor(apiService, router) {
     this.apiService = apiService;
+    this.router = router;
     this.deleteModalOpenedFor = null;
     this.isCreateModalOpen = false;
     this.temporaryData = [];
@@ -41638,6 +41642,7 @@ var _AllTripsComponent = class _AllTripsComponent {
   }
   onChooseTrip(tripId) {
     console.log(tripId);
+    this.router.navigate(["/trips", tripId]);
   }
   onDeleteClick(event, tripId) {
     event.stopPropagation();
@@ -41664,7 +41669,7 @@ var _AllTripsComponent = class _AllTripsComponent {
   }
 };
 _AllTripsComponent.\u0275fac = function AllTripsComponent_Factory(t) {
-  return new (t || _AllTripsComponent)(\u0275\u0275directiveInject(ApiService));
+  return new (t || _AllTripsComponent)(\u0275\u0275directiveInject(ApiService), \u0275\u0275directiveInject(Router));
 };
 _AllTripsComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AllTripsComponent, selectors: [["app-all-trips"]], standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 10, vars: 2, consts: [[1, "container", "w-full", "py-16"], [1, "text-5xl", "font-extrabold", "text-white"], [1, "mx-5", "grid", "gap-6", "sm:m-0", "md:grid-cols-3"], [1, "w-50", "grid", "h-32", "w-full", "cursor-pointer", "content-center", "justify-center", "gap-x-2", "rounded-md", "border", "border-solid", "border-white", "bg-cyan-700", "p-3", "text-white", "transition", "duration-200", "hover:bg-cyan-600", 3, "click"], ["name", "plus-circle"], [1, "w-50", "relative", "z-10", "h-32", "w-full", "cursor-pointer", "gap-x-2", "rounded-md", "border", "border-solid", "border-white", "bg-cyan-700", "p-3", "text-white", "transition", "duration-200", "hover:bg-cyan-600", 3, "click"], [1, "absolute", "right-3", "z-20", "grid", "content-center", "justify-center", "rounded-md", "bg-cyan-600", "p-1", "transition", "duration-200", "hover:bg-orange-700", 3, "click"], ["name", "trash-2"], [1, "flex", "w-full", "justify-start", "text-2xl", "font-extrabold"], [1, "text-l", "flex", "h-full", "w-full", "items-center", "justify-end", "font-bold"], [3, "closeModal"], [1, "grid", "w-full", "place-items-center", "pb-10", "text-2xl"], [1, "flex", "flex-row", "items-center", "justify-around"], [1, "h-fit", "w-fit", "rounded-md", "bg-cyan-700", "p-4", "text-center", 3, "click"], [3, "tripSubmitted"], ["class", "w-50 relative z-10 h-32 w-full cursor-pointer gap-x-2 rounded-md border border-solid border-white bg-cyan-700 p-3 text-white transition duration-200 hover:bg-cyan-600"]], template: function AllTripsComponent_Template(rf, ctx) {
   if (rf & 1) {
@@ -41692,25 +41697,90 @@ _AllTripsComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ typ
 }, dependencies: [CommonModule, DatePipe, IconsModule, FeatherComponent, ModalComponent, CreateTripComponent], styles: ["\n\n/*# sourceMappingURL=all-trips.component.css.map */"] });
 var AllTripsComponent = _AllTripsComponent;
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AllTripsComponent, { className: "AllTripsComponent", filePath: "src/app/components/all-trips/all-trips.component.ts", lineNumber: 16 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AllTripsComponent, { className: "AllTripsComponent", filePath: "src/app/components/all-trips/all-trips.component.ts", lineNumber: 17 });
 })();
 
 // src/app/components/trip-details/trip-details.component.ts
+var _forTrack02 = ($index, $item) => $item.id;
+function TripDetailsComponent_For_12_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r7 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 8)(1, "input", 9);
+    \u0275\u0275listener("change", function TripDetailsComponent_For_12_Template_input_change_1_listener() {
+      const restoredCtx = \u0275\u0275restoreView(_r7);
+      const item_r1 = restoredCtx.$implicit;
+      return \u0275\u0275resetView(item_r1.isTaken = !item_r1.isTaken);
+    });
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(2, "label", 10);
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const item_r1 = ctx.$implicit;
+    \u0275\u0275advance();
+    \u0275\u0275property("checked", item_r1.isTaken);
+    \u0275\u0275advance();
+    \u0275\u0275classProp("line-through", item_r1.isTaken);
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate2("", item_r1.name, " x ", item_r1.quantity, "");
+  }
+}
 var _TripDetailsComponent = class _TripDetailsComponent {
+  constructor(route, apiService) {
+    this.route = route;
+    this.apiService = apiService;
+    this.math = Math;
+  }
+  ngOnInit() {
+    const tripId = this.route.snapshot.params["id"];
+    this.apiService.getTrip(tripId).subscribe((trip) => {
+      this.trip = trip;
+    });
+  }
+  takenItemsPercentage() {
+    const takenItems = this.trip?.luggageItems.filter((item) => item.isTaken);
+    return takenItems.length / this.trip.luggageItems.length * 100;
+  }
 };
 _TripDetailsComponent.\u0275fac = function TripDetailsComponent_Factory(t) {
-  return new (t || _TripDetailsComponent)();
+  return new (t || _TripDetailsComponent)(\u0275\u0275directiveInject(ActivatedRoute), \u0275\u0275directiveInject(ApiService));
 };
-_TripDetailsComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TripDetailsComponent, selectors: [["app-trip-details"]], standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 2, vars: 0, template: function TripDetailsComponent_Template(rf, ctx) {
+_TripDetailsComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TripDetailsComponent, selectors: [["app-trip-details"]], standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 16, vars: 10, consts: [[1, "container", "h-full", "w-full", "overflow-y-hidden", "py-16"], [1, "text-5xl", "font-extrabold", "text-white"], [1, "text-3xl", "font-extrabold", "text-white"], [1, "mt-8", "flex", "h-4/5", "w-5/6", "flex-row", "overflow-y-scroll", "rounded-md"], [1, "container", "mr-5", "flex-grow", "overflow-y-scroll", "border-2", "border-white"], [1, "p-5", "text-2xl", "font-bold", "text-white"], [1, "flex", "w-1/6", "rounded-md", "border-2", "border-white"], [1, "mt-auto", "w-full", "rounded-md", "bg-white", "text-center", "align-bottom", "text-2xl", "font-bold", "text-cyan-700"], [1, "justify-spaced", "items-left", "flex", "flex-row", "px-5", "py-2"], ["type", "checkbox", "name", "isTaken", 1, "vertical-align-middle", "h-6", "w-6", "cursor-pointer", "appearance-none", "rounded-full", "border-2", "border-white", "bg-white", "checked:bg-cyan-700", 3, "checked", "change"], ["name", "isTaken", 1, "pl-2", "text-2xl", "font-bold", "text-white"], ["class", "justify-spaced items-left flex flex-row px-5 py-2"]], template: function TripDetailsComponent_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "p");
-    \u0275\u0275text(1, "trip-details works!");
+    \u0275\u0275elementStart(0, "div", 0)(1, "div", 1);
+    \u0275\u0275text(2);
     \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "div", 2);
+    \u0275\u0275text(4);
+    \u0275\u0275pipe(5, "date");
+    \u0275\u0275pipe(6, "date");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(7, "div", 3)(8, "div", 4)(9, "div", 5);
+    \u0275\u0275text(10, "Luggage Items");
+    \u0275\u0275elementEnd();
+    \u0275\u0275repeaterCreate(11, TripDetailsComponent_For_12_Template, 4, 5, "div", 11, _forTrack02);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(13, "div", 6)(14, "div", 7);
+    \u0275\u0275text(15);
+    \u0275\u0275elementEnd()()()();
   }
-}, styles: ["\n\n/*# sourceMappingURL=trip-details.component.css.map */"] });
+  if (rf & 2) {
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate1(" Trip to ", ctx.trip == null ? null : ctx.trip.destination, " ");
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate2(" between ", \u0275\u0275pipeBind1(5, 6, ctx.trip == null ? null : ctx.trip.departureDate), " and ", \u0275\u0275pipeBind1(6, 8, ctx.trip == null ? null : ctx.trip.returnDate), " ");
+    \u0275\u0275advance(7);
+    \u0275\u0275repeater(ctx.trip == null ? null : ctx.trip.luggageItems);
+    \u0275\u0275advance(3);
+    \u0275\u0275styleProp("height", ctx.takenItemsPercentage(), "%");
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate1(" ", ctx.math.floor(ctx.takenItemsPercentage()), "% ");
+  }
+}, dependencies: [CommonModule, DatePipe, ReactiveFormsModule], styles: ["\n\n/*# sourceMappingURL=trip-details.component.css.map */"] });
 var TripDetailsComponent = _TripDetailsComponent;
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TripDetailsComponent, { className: "TripDetailsComponent", filePath: "src/app/components/trip-details/trip-details.component.ts", lineNumber: 10 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TripDetailsComponent, { className: "TripDetailsComponent", filePath: "src/app/components/trip-details/trip-details.component.ts", lineNumber: 15 });
 })();
 
 // src/app/components/edit-trip/edit-trip.component.ts
@@ -41733,11 +41803,13 @@ var EditTripComponent = _EditTripComponent;
 
 // src/app/app.routes.ts
 var routes = [
+  { path: "", redirectTo: "trips", pathMatch: "full" },
   { path: "user", component: UserComponent },
-  { path: "all-trips", component: AllTripsComponent },
-  { path: "trip-details", component: TripDetailsComponent },
+  { path: "trips", component: AllTripsComponent },
+  { path: "trips/:id", component: TripDetailsComponent },
   { path: "create-trip", component: CreateTripComponent },
   { path: "edit-trip", component: EditTripComponent }
+  //TODO: page not found
 ];
 
 // src/app/app.config.ts

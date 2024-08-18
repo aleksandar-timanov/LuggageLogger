@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="text-3xl font-extrabold text-white">Create an account</div>
+    <div class="text-2xl font-bold text-white">
+        Already have an account? <a routerLink="/login">Login</a>
+    </div>
+    <div class="mt-8">
+        <form
+            [formGroup]="userForm"
+            class="grid text-white"
+            (ngSubmit)="onSubmit()"
+        >
+            <label for="name">Name:</label>
+            <input type="text" name="name" formControlName="name" />
+
+            <label for="email">Email:</label>
+            <input type="text" name="email" formControlName="email" />
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" formControlName="password" />
+
+            <label for="passwordConfirmation">Name:</label>
+            <input
+                type="password"
+                name="passwordConfirmation"
+                formControlName="passwordConfirmatio"
+            />
+        </form>
+    </div>
+</div>

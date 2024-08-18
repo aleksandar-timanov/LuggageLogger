@@ -57023,6 +57023,7 @@ export {
   ɵɵtemplate,
   ɵɵattribute,
   ɵɵproperty,
+  ɵɵstyleProp,
   ɵɵclassProp,
   ɵɵconditional,
   ɵɵrepeaterCreate,
@@ -57079,6 +57080,7 @@ export {
   SERVER_CONTEXT,
   renderModule,
   renderApplication,
+  ActivatedRoute,
   RouterOutlet,
   loadChildren,
   Router,
@@ -57192,4 +57194,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-53GZ5BDR.mjs.map
+//# sourceMappingURL=chunk-PG7TQMXF.mjs.map
