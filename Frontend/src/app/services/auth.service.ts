@@ -19,20 +19,19 @@ export class AuthService {
     }
 
     public createUser(userData: User): Observable<Object> {
-        console.log(userData, this.url)
         return this.http
             .post<User>(`${this.url}/api/v1/auth/register`, userData)
             .pipe(
-                tap(() => this.setSession),
+                tap((res) => this.setSession(res)),
                 shareReplay()
             )
     }
 
     public login(userData: User): Observable<Object> {
         return this.http
-            .post<User>(`${this.url}/api/v1/auth/authenticate`, userData)
+            .post(`${this.url}/api/v1/auth/authenticate`, userData)
             .pipe(
-                tap(() => this.setSession),
+                tap((res) => this.setSession(res)),
                 shareReplay()
             )
     }
@@ -47,7 +46,7 @@ export class AuthService {
     }
 
     // session related
-    private setSession(authResult: { expiresIn: number; token: string }) {
+    private setSession(authResult: any) {
         const expiresAt = authResult.expiresIn
         localStorage.setItem('id_token', authResult.token)
         localStorage.setItem('expires_at', JSON.stringify(expiresAt))

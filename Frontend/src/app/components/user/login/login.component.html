@@ -1,13 +1,22 @@
-<form [formGroup]="form">
+<form class="grid text-white" [formGroup]="form">
     <fieldset>
-        <legend>Login</legend>
+        <div class="text-3xl font-extrabold text-white">Login:</div>
         <div class="form-field">
             <label>Email:</label>
-            <input name="username" formControlName="username" />
+            <input
+                class="text-black"
+                name="username"
+                formControlName="username"
+            />
         </div>
         <div class="form-field">
             <label>Password:</label>
-            <input name="password" formControlName="password" type="password" />
+            <input
+                class="text-black"
+                name="password"
+                formControlName="password"
+                type="password"
+            />
         </div>
     </fieldset>
     <div class="form-buttons">
