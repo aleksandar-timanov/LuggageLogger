@@ -22,6 +22,8 @@ public class Trip {
   private Instant departureDate;
   @Getter @Setter
   private Instant returnDate;
+  @Getter @Setter
+  private Integer userId;
 
   @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<LuggageItem> luggageItems;

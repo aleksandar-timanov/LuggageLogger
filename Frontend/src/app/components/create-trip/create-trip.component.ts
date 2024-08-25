@@ -37,10 +37,15 @@ export class CreateTripComponent implements AfterViewInit {
 
     onSubmitNewTrip() {
         if (this.newTrip.valid) {
+            console.log(this.newTrip.value)
             this.trip = {
                 destination: this.newTrip.value.destination!,
-                departureDate: this.newTrip.value.departureDate!,
-                returnDate: this.newTrip.value.returnDate!,
+                departureDate: new Date(
+                    this.newTrip.value.departureDate!
+                ).toISOString(),
+                returnDate: new Date(
+                    this.newTrip.value.returnDate!
+                ).toISOString(),
             }
 
             return this.tripSubmitted.emit(this.trip)

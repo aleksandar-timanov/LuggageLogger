@@ -68,5 +68,6 @@ export class AllTripsComponent {
         console.log(trip)
         this.temporaryData.push({ id: this.temporaryData.length, ...trip })
         this.isCreateModalOpen = false
+        this.apiService.createTrip(trip).subscribe((res) => console.log(res))
     }
 }
