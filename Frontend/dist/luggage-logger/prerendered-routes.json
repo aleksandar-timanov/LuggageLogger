@@ -2,6 +2,7 @@
   "routes": [
     "/create-trip",
     "/edit-trip",
+    "/register",
     "/trips",
     "/user"
   ]

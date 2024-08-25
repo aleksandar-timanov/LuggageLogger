@@ -10,20 +10,82 @@
             (ngSubmit)="onSubmit()"
         >
             <label for="name">Name:</label>
-            <input type="text" name="name" formControlName="name" />
+            <input
+                type="text"
+                class="text-black"
+                name="name"
+                formControlName="name"
+            />
+            @if (
+                userForm.get('name')?.dirty &&
+                userForm.get('name')?.touched &&
+                userForm.get('name')?.hasError('required')
+            ) {
+                <div class="text-red-500">Name is required</div>
+            }
 
             <label for="email">Email:</label>
-            <input type="text" name="email" formControlName="email" />
+            <input
+                type="email"
+                class="text-black"
+                name="email"
+                formControlName="email"
+            />
+            @if (
+                userForm.get('email')?.dirty &&
+                userForm.get('email')?.touched &&
+                userForm.get('email')?.hasError('required')
+            ) {
+                <div class="text-red-500">Email is required</div>
+            }
 
             <label for="password">Password:</label>
-            <input type="password" name="password" formControlName="password" />
-
-            <label for="passwordConfirmation">Name:</label>
             <input
+                class="text-black"
+                type="password"
+                name="password"
+                formControlName="password"
+            />
+            @if (
+                userForm.get('password')?.dirty &&
+                userForm.get('password')?.touched &&
+                userForm.get('password')?.hasError('required')
+            ) {
+                <div class="text-red-500">Password is required</div>
+            }
+
+            <label for="passwordConfirmation">Confirm password:</label>
+            <input
+                class="text-black"
                 type="password"
                 name="passwordConfirmation"
-                formControlName="passwordConfirmatio"
+                formControlName="passwordConfirmation"
             />
+            @if (
+                userForm.get('passwordConfirmation')?.dirty &&
+                userForm.get('passwordConfirmation')?.touched &&
+                userForm.get('passwordConfirmation')?.hasError('required')
+            ) {
+                <div class="text-red-500">
+                    Password confirmation is required
+                </div>
+            }
+            @if (
+                userForm.get('password')?.dirty &&
+                userForm.get('password')?.touched &&
+                userForm.get('passwordConfirmation')?.dirty &&
+                userForm.get('passwordConfirmation')?.touched &&
+                userForm.hasError('passwordsDontMatch')
+            ) {
+                <div class="text-red-500">Passwords do not match</div>
+            }
+
+            <button
+                type="submit"
+                class="my-2 w-24 justify-self-end rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+            >
+                Submit
+            </button>
         </form>
     </div>
 </div>

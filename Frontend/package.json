@@ -4,6 +4,7 @@
     "scripts": {
         "ng": "ng",
         "start": "concurrently --kill-others \"json-server --watch dev-mock-db.cjs\" \"ng serve --watch --configuration development\"",
+        "serve-integration": "ng serve --watch --configuration development-integration",
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
         "integration": "ng build --watch --configuration development-integration",

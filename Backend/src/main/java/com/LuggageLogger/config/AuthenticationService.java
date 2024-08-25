@@ -32,8 +32,10 @@ public class AuthenticationService {
         repository.save(user);
 
         var jwtToken = jwtService.generateToken(user);
+        var expiresAt = jwtService.extractExpiration(jwtToken);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .expiresAt(expiresAt)
                 .build();
     }
 

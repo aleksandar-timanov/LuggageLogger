@@ -5,11 +5,13 @@ import { TripDetailsComponent } from './components/trip-details/trip-details.com
 import { CreateTripComponent } from './components/create-trip/create-trip.component'
 import { EditTripComponent } from './components/edit-trip/edit-trip.component'
 import { RegisterComponent } from './components/user/register/register.component'
+import { LoginComponent } from './components/user/login/login.component'
 
 export const routes: Routes = [
     { path: '', redirectTo: 'trips', pathMatch: 'full' },
-    { path: 'user', component: UserComponent },
+    // { path: 'user', component: UserComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'login', component: LoginComponent },
     { path: 'trips', component: AllTripsComponent },
     { path: 'trips/:id', component: TripDetailsComponent },
     { path: 'create-trip', component: CreateTripComponent },

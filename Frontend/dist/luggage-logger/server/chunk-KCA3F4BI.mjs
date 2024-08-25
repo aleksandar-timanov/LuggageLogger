@@ -6995,10 +6995,80 @@ var EditTripComponent = _EditTripComponent;
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(EditTripComponent, { className: "EditTripComponent", filePath: "src/app/components/edit-trip/edit-trip.component.ts", lineNumber: 10 });
 })();
 
+// src/app/components/user/register/register.component.ts
+var _RegisterComponent = class _RegisterComponent {
+  constructor() {
+    this.userForm = new FormGroup({
+      name: new FormControl("", Validators.required),
+      email: new FormControl("", [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl("", Validators.required),
+      passwordConfirmation: new FormControl("", Validators.required)
+    }, { validators: this.passwordsMatch });
+  }
+  passwordsMatch(control) {
+    const password = control.get("password");
+    const passwordConfirmation = control.get("passwordConfirmation");
+    return password && passwordConfirmation && password === passwordConfirmation ? null : { passwordsDontMatch: true };
+  }
+  onSubmit() {
+    if (this.userForm.valid) {
+      console.log(this.userForm.value);
+    }
+  }
+};
+_RegisterComponent.\u0275fac = function RegisterComponent_Factory(t) {
+  return new (t || _RegisterComponent)();
+};
+_RegisterComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _RegisterComponent, selectors: [["app-register"]], standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 21, vars: 1, consts: [[1, "container"], [1, "text-3xl", "font-extrabold", "text-white"], [1, "text-2xl", "font-bold", "text-white"], ["routerLink", "/login"], [1, "mt-8"], [1, "grid", "text-white", 3, "formGroup", "ngSubmit"], ["for", "name"], ["type", "text", "name", "name", "formControlName", "name"], ["for", "email"], ["type", "text", "name", "email", "formControlName", "email"], ["for", "password"], ["type", "password", "name", "password", "formControlName", "password"], ["for", "passwordConfirmation"], ["type", "password", "name", "passwordConfirmation", "formControlName", "passwordConfirmatio"]], template: function RegisterComponent_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 0)(1, "div", 1);
+    \u0275\u0275text(2, "Create an account");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "div", 2);
+    \u0275\u0275text(4, " Already have an account? ");
+    \u0275\u0275elementStart(5, "a", 3);
+    \u0275\u0275text(6, "Login");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(7, "div", 4)(8, "form", 5);
+    \u0275\u0275listener("ngSubmit", function RegisterComponent_Template_form_ngSubmit_8_listener() {
+      return ctx.onSubmit();
+    });
+    \u0275\u0275elementStart(9, "label", 6);
+    \u0275\u0275text(10, "Name:");
+    \u0275\u0275elementEnd();
+    \u0275\u0275element(11, "input", 7);
+    \u0275\u0275elementStart(12, "label", 8);
+    \u0275\u0275text(13, "Email:");
+    \u0275\u0275elementEnd();
+    \u0275\u0275element(14, "input", 9);
+    \u0275\u0275elementStart(15, "label", 10);
+    \u0275\u0275text(16, "Password:");
+    \u0275\u0275elementEnd();
+    \u0275\u0275element(17, "input", 11);
+    \u0275\u0275elementStart(18, "label", 12);
+    \u0275\u0275text(19, "Name:");
+    \u0275\u0275elementEnd();
+    \u0275\u0275element(20, "input", 13);
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    \u0275\u0275advance(8);
+    \u0275\u0275property("formGroup", ctx.userForm);
+  }
+}, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, FormsModule], styles: ["\n\n/*# sourceMappingURL=register.component.css.map */"] });
+var RegisterComponent = _RegisterComponent;
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(RegisterComponent, { className: "RegisterComponent", filePath: "src/app/components/user/register/register.component.ts", lineNumber: 19 });
+})();
+
 // src/app/app.routes.ts
 var routes = [
   { path: "", redirectTo: "trips", pathMatch: "full" },
   { path: "user", component: UserComponent },
+  { path: "register", component: RegisterComponent },
   { path: "trips", component: AllTripsComponent },
   { path: "trips/:id", component: TripDetailsComponent },
   { path: "create-trip", component: CreateTripComponent },
@@ -7039,4 +7109,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-GUVWVYER.mjs.map
+//# sourceMappingURL=chunk-KCA3F4BI.mjs.map

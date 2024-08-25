@@ -8,6 +8,7 @@ import {
     FormsModule,
     ReactiveFormsModule,
 } from '@angular/forms'
+import { AuthService } from 'src/app/services/auth.service'
 
 @Component({
     selector: 'app-register',
@@ -33,19 +34,27 @@ export class RegisterComponent {
         { validators: this.passwordsMatch }
     )
 
+    constructor(private authService: AuthService) {}
+
     private passwordsMatch(control: AbstractControl): ValidationErrors | null {
         const password = control.get('password')
         const passwordConfirmation = control.get('passwordConfirmation')
-        return password &&
-            passwordConfirmation &&
-            password === passwordConfirmation
+        return password?.value &&
+            passwordConfirmation?.value &&
+            password.value === passwordConfirmation.value
             ? null
             : { passwordsDontMatch: true }
     }
 
     onSubmit() {
         if (this.userForm.valid) {
-            console.log(this.userForm.value)
+            this.authService
+                .createUser({
+                    username: this.userForm.get('name')?.value,
+                    email: this.userForm.get('email')?.value,
+                    password: this.userForm.get('password')?.value,
+                })
+                .subscribe((res) => console.log(res))
         }
     }
 }
