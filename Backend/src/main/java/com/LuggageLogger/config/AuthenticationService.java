@@ -54,6 +54,7 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .expiresAt(jwtService.extractExpiration(jwtToken))
                 .build();
     }
 

@@ -1,0 +1,23 @@
+<div class="flex w-full justify-end bg-blue-800 px-10">
+    @if (isUserLoggedIn) {
+        <button
+            (click)="logoutClicked()"
+            class="mx-2 my-2 rounded-md border border-white px-3 py-1 text-white"
+        >
+            Logout
+        </button>
+    } @else {
+        <a
+            href="/login"
+            class="mx-2 my-2 rounded-md border border-white px-3 py-1 text-white"
+        >
+            Login
+        </a>
+        <a
+            href="/register"
+            class="mx-2 my-2 rounded-md border border-white px-3 py-1 text-white"
+        >
+            Register
+        </a>
+    }
+</div>

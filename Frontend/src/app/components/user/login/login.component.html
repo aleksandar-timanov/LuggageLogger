@@ -1,26 +1,35 @@
 <form class="grid text-white" [formGroup]="form">
+    <div class="container w-full py-16">
+        <div class="text-5xl font-extrabold text-white">Login</div>
+    </div>
     <fieldset>
-        <div class="text-3xl font-extrabold text-white">Login:</div>
-        <div class="form-field">
-            <label>Email:</label>
+        <div class="mb-3 grid w-full">
+            <label for="username" class="mb-1 w-full text-xl">Username</label>
             <input
-                class="text-black"
-                name="username"
+                class="rounded-md p-2 text-black"
+                type="text"
                 formControlName="username"
+                name="username"
+                value=""
             />
         </div>
-        <div class="form-field">
-            <label>Password:</label>
+        <div class="mb-3 grid w-full">
+            <label for="password" class="mb-1 w-full text-xl">Password</label>
             <input
-                class="text-black"
-                name="password"
-                formControlName="password"
+                class="rounded-md p-2 text-black"
                 type="password"
+                formControlName="password"
+                name="password"
+                value=""
             />
         </div>
     </fieldset>
     <div class="form-buttons">
-        <button class="button button-primary" (click)="login()">Login</button>
-        <button (click)="logout()">Logout</button>
+        <button
+            class="h-fit w-fit rounded-md bg-cyan-700 p-4 text-center"
+            (click)="login()"
+        >
+            Login
+        </button>
     </div>
 </form>
