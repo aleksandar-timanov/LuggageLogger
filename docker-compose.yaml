@@ -10,3 +10,13 @@ services:
       - ./Backend/data:/var/lib/mysql
     ports:
       - 3306:3306
+  # backend:
+  #   image: luggage_logger:0.0.1-SNAPSHOT
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
+  # frontend:
+  #   image: luggage_logger_frontend
+  #   restart: always
+  #   ports:
+  #     - 4200:4200
